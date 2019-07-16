@@ -3,8 +3,8 @@
 if [ $# -lt 4 ]; then
     echo "Creates a sample data set for the given genes and studies."
     echo "Usage: $0 source_dir output_dir gene_list studies_list"
-    echo "Example: $0 /home/user/open-targets-genetics-releases/19.03.03 /home/user/output ENSG00000012048,ENSG00000141510 NEALEUKB_50,GCST001612_1"
-    echo "Selects data set for ENSG00000012048 (BRCA1) and ENSG00000141510 (TP53) genes and for two studies: NEALEUKB_50 and GCST001612_1"
+    echo "Example: $0 /home/user/open-targets-genetics-releases/19.05.04 /home/user/output ENSG00000012048,ENSG00000141510 NEALE2_50_raw,GCST001612"
+    echo "Selects data set for ENSG00000012048 (BRCA1) and ENSG00000141510 (TP53) genes and for two studies: NEALE2_50_raw and GCST001612"
     exit 1
 fi
 

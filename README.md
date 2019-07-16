@@ -1,19 +1,19 @@
 # Open Targets Genetics Data Sample
 
-Small data sample (TP53, BRCA1 genes and NEALEUKB_50,GCST001612_1 studies) to be used to test data loading and application.
+Small data sample (TP53, BRCA1 genes and NEALE2_50_raw,GCST001612 studies) to be used to test data loading and application.
 
 ## How sample dataset has been created
 
 ### The release dataset
 
 ```bash
-    ./create_data_sample.sh open-targets-genetics-releases/19.03.03 /home/user/output ENSG00000012048,ENSG00000141510 NEALEUKB_50,GCST001612_1
+    ./create_data_sample.sh open-targets-genetics-releases/19.05.04 /home/user/output ENSG00000012048,ENSG00000141510 NEALE2_50_raw,GCST001612
 ```
-Where `open-targets-genetics-releases/19.03.03` is folder with the [full release data set].
+Where `open-targets-genetics-releases/19.05.04` is folder with the [full release data set].
 
 ### The gwas data
 
-This repo contains also gwas data for NEALEUKB_50 study. Here is [full gwas data set].
+This repo contains also gwas data for NEALE2_50_raw study. Here is [full gwas data set].
 
 ## Load data
 
@@ -32,5 +32,5 @@ gwas data loadin happens in 2 steps:
     - load_sumstats_gwas.sh
     - sumstats_gwas_makechrtables.sh
 
-[full release data set]: https://console.cloud.google.com/storage/browser/open-targets-genetics-releases/19.03.03
+[full release data set]: https://console.cloud.google.com/storage/browser/open-targets-genetics-releases/19.05.04
 [full gwas data set]: https://console.cloud.google.com/storage/browser/genetics-portal-sumstats/gwas
