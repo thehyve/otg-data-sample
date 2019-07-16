@@ -10,9 +10,9 @@ fi
 
 INPUT_DIR=${1}
 OUTPUT_DIR=${2}
-GENES_RE=${3//,/\\|}
+GENES_RE="\\(${3//,/\\|}\\)"
 GENES_=${3//,/_}
-STUDIES_RE=${4//,/\\|}
+STUDIES_RE="\\(${4//,/\\|}\\)"
 STUDIES_=${4//,/_}
 
 echo "$(date) Filtering genes index (1/7)"
