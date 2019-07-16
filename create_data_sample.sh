@@ -42,5 +42,5 @@ grep -h "\"study_id\":\"${STUDIES_RE}\"" ${INPUT_DIR}/v2d/part-*.json > ${OUTPUT
 echo "$(date) Filtering disease to variant to gene records (7/7)"
 mkdir -p ${OUTPUT_DIR}/d2v2g/
 grep -h "\"study_id\":\"${STUDIES_RE}\"" ${INPUT_DIR}/d2v2g/part-*.json | grep "\"gene_id\":\"${GENES_RE}\"" > ${OUTPUT_DIR}/d2v2g/part-${STUDIES_}-${GENES_}.json
+
 echo "$(date) Creating of the sample dataset has finished."
-mkdir -p ${OUTPUT_DIR}/d2v2g/
