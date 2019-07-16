@@ -15,32 +15,41 @@ GENES_=${3//,/_}
 STUDIES_RE="\\(${4//,/\\|}\\)"
 STUDIES_=${4//,/_}
 
-echo "$(date) Filtering genes index (1/7)"
+echo "$(date) Filtering genes index (1/9)"
 mkdir -p ${OUTPUT_DIR}/lut/genes-index/
 grep -h "\"gene_id\":\"${GENES_RE}\"" ${INPUT_DIR}/lut/genes-index/part-*.json > ${OUTPUT_DIR}/lut/genes-index/part-${GENES_}.json
 
-echo "$(date) Filtering variant index (2/7)"
+echo "$(date) Filtering variant index (2/9)"
 mkdir -p ${OUTPUT_DIR}/lut/variant-index/
 grep -h "\"gene_id_any\":\"${GENES_RE}\"" ${INPUT_DIR}/lut/variant-index/part-*.json > ${OUTPUT_DIR}/lut/variant-index/part-${GENES_}.json
 
-echo "$(date) Filtering study index (3/7)"
+echo "$(date) Filtering study index (3/9)"
 mkdir -p ${OUTPUT_DIR}/lut/study-index/
 grep -h "\"study_id\":\"${STUDIES_RE}\"" ${INPUT_DIR}/lut/study-index/part-*.json > ${OUTPUT_DIR}/lut/study-index/part-${STUDIES_}.json
 
-echo "$(date) Filtering study overlap index (4/7)"
+echo "$(date) Filtering study overlap index (4/9)"
 mkdir -p ${OUTPUT_DIR}/lut/overlap-index/
 grep -h "\"A_study_id\":\"${STUDIES_RE}\"" ${INPUT_DIR}/lut/overlap-index/part-*.json > ${OUTPUT_DIR}/lut/overlap-index/part-${STUDIES_}.json
 
-echo "$(date) Filtering variant to gene records (5/7)"
+echo "$(date) Filtering variant to gene records (5/9)"
 mkdir -p ${OUTPUT_DIR}/v2g/
 grep -h "\"gene_id\":\"${GENES_RE}\"" ${INPUT_DIR}/v2g/part-*.json > ${OUTPUT_DIR}/v2g/part-${GENES_}.json
 
-echo "$(date) Filtering variant to disease records (6/7)"
+echo "$(date) Filtering variant to disease records (6/9)"
 mkdir -p ${OUTPUT_DIR}/v2d/
 grep -h "\"study_id\":\"${STUDIES_RE}\"" ${INPUT_DIR}/v2d/part-*.json > ${OUTPUT_DIR}/v2d/part-${STUDIES_}.json
 
-echo "$(date) Filtering disease to variant to gene records (7/7)"
+echo "$(date) Filtering disease to variant to gene records (7/9)"
 mkdir -p ${OUTPUT_DIR}/d2v2g/
 grep -h "\"study_id\":\"${STUDIES_RE}\"" ${INPUT_DIR}/d2v2g/part-*.json | grep "\"gene_id\":\"${GENES_RE}\"" > ${OUTPUT_DIR}/d2v2g/part-${STUDIES_}-${GENES_}.json
+
+
+echo "$(date) Filtering variant to disease colocation records (8/9)"
+mkdir -p ${OUTPUT_DIR}/v2d_coloc/
+grep -h "\"right_study\":\"${STUDIES_RE}\"" ${INPUT_DIR}/v2d_coloc/part-*.json | grep "\"right_gene_id\":\"${GENES_RE}\"" > ${OUTPUT_DIR}/v2d_coloc/part-${STUDIES_}-${GENES_}.json
+
+echo "$(date) Filtering variant to disease credset records (9/9)"
+mkdir -p ${OUTPUT_DIR}/v2d_credset/
+zcat ${INPUT_DIR}/v2d_credset/part-*.json.gz | grep -h "\"study_id\":\"${STUDIES_RE}\"" | grep "\"phenotype_id\":\"${GENES_RE}\"" | gzip > ${OUTPUT_DIR}/v2d_credset/part-${STUDIES_}-${GENES_}.json.gz
 
 echo "$(date) Creating of the sample dataset has finished."
