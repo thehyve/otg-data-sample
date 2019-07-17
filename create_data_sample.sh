@@ -46,11 +46,11 @@ grep -h "\"study_id\":\"${STUDIES_RE}\"" ${INPUT_DIR}/d2v2g/part-*.json | grep "
 
 echo "$(date) Filtering variant to disease colocation records (8/11)"
 mkdir -p ${OUTPUT_DIR}/v2d_coloc/
-grep -h "\"right_study\":\"${STUDIES_RE}\"" ${INPUT_DIR}/v2d_coloc/part-*.json | grep "\"right_gene_id\":\"${GENES_RE}\"" > ${OUTPUT_DIR}/v2d_coloc/part-${STUDIES_}-${GENES_}.json
+grep -h ":\"${STUDIES_RE}\"" ${INPUT_DIR}/v2d_coloc/part-*.json | grep ":\"${GENES_RE}\"" > ${OUTPUT_DIR}/v2d_coloc/part-${STUDIES_}-${GENES_}.json
 
 echo "$(date) Filtering variant to disease credset records (9/11)"
 mkdir -p ${OUTPUT_DIR}/v2d_credset/
-zcat ${INPUT_DIR}/v2d_credset/part-*.json.gz | grep -h "\"study_id\":\"${STUDIES_RE}\"" | grep "\"phenotype_id\":\"${GENES_RE}\"" | gzip > ${OUTPUT_DIR}/v2d_credset/part-${STUDIES_}-${GENES_}.json.gz
+zcat ${INPUT_DIR}/v2d_credset/part-*.json.gz | grep -h "\"study_id\":\"${STUDIES_RE}\"" | gzip > ${OUTPUT_DIR}/v2d_credset/part-${STUDIES_}.json.gz
 
 echo "$(date) Filtering gwas records (10/11)"
 mkdir -p ${OUTPUT_DIR}/sa/
