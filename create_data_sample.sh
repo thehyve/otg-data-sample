@@ -56,8 +56,14 @@ echo "$(date) Filtering gwas records (10/11)"
 mkdir -p ${OUTPUT_DIR}/sa/
 IFS=',' read -r -a genes <<< "$3"
 IFS=',' read -r -a studies <<< "$4"
-./parquet_rows_filter_cli/parquet_filter.py ${INPUT_DIR}/sa/gwas/ ${OUTPUT_DIR}/sa/gwas/ ${studies[@]/#/--study_id=}
+for f in ${INPUT_DIR}/sa/gwas/*.parquet; do
+    ./parquet_rows_filter_cli/parquet_filter.py "${f}" ${OUTPUT_DIR}/sa/gwas/"$(basename -- $f)" ${studies[@]/#/--study_id=}
+    echo .
+done
 echo "$(date) Filtering molecular trait records (11/11)"
-./parquet_rows_filter_cli/parquet_filter.py ${INPUT_DIR}/sa/molecular_trait/ ${OUTPUT_DIR}/sa/molecular_trait/ "${studies[@]/#/--study_id=}" "${genes[@]/#/--gene_id=}"
+for f in ${INPUT_DIR}/sa/molecular_trait/*.parquet; do
+    ./parquet_rows_filter_cli/parquet_filter.py "${f}" ${OUTPUT_DIR}/sa/molecular_trait/"$(basename -- $f)" "${studies[@]/#/--study_id=}" "${genes[@]/#/--gene_id=}"
+    echo .
+done
 
 echo "$(date) Creating of the sample dataset has finished."
