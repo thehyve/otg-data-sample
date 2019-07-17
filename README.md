@@ -2,6 +2,14 @@
 
 Small data sample (TP53, BRCA1 genes and NEALE2_50_raw,GCST001612 studies) to be used to test data loading and application.
 
+## Before you start
+
+Pull git submodules first.
+
+```bash
+    git submodule update --init --recursive
+```
+
 ## How sample dataset has been created
 
 ### The release dataset
