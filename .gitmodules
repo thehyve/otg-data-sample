@@ -1,0 +1,3 @@
+[submodule "parquet_rows_filter_cli"]
+	path = parquet_rows_filter_cli
+	url = git@github.com:thehyve/parquet_rows_filter_cli.git
